@@ -22,11 +22,8 @@ int main(void){
     int base;
 
     scanf("%s %d", value, &base);
-
-    if (!existError(value, base))
-        printf("%.2f\n", strtofloat(value, base));
-    else
-        printf("Valor Invalido\n");
     
+    printf("%.2f\n", strtofloat(value, base));
+ 
     return 0;
 }
