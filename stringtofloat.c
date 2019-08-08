@@ -14,7 +14,7 @@ float strtofloat(char *string, int base){
     if (base == decimal_base) 
         return strtof(string, NULL); //chama a funcao que converte string p/float diretamente
     else 
-        return (float) strtoul(string, NULL, base); //chama a funcao que converte string p/int na base indicada
+        return (float) strtoul(string, NULL, base); //chama a funcao que converte string p/ unsigned int na base indicada
 }
 
 int main(void){
