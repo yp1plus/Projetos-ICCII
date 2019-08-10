@@ -46,7 +46,7 @@ int main(void){
 	
 	tamanhodonumero=nstrlen(stringdonumero);
 	
-	for(i=0;i<tamanhodonumero;i++){
+	for(i=0;i<tamanhodonumero-1;i++){
 	    if(stringdonumero[i]=='.'){
 	        cont=-1;
 	        pontopos=i-1;
@@ -54,7 +54,11 @@ int main(void){
 	            resultado+=(float)(((int)stringdonumero[j]-48)*potencia(base,cont));
 	            cont--;
 	        }
+            break;
 	    }
+        else if (i == tamanhodonumero - 2){
+            pontopos = i;
+        }
 	}
 	
 	cont=0;
@@ -64,7 +68,7 @@ int main(void){
 	   cont++;
 	}
 	
-	printf("%f\n",resultado);
+	printf("%.2f\n",resultado);
     
 
 
