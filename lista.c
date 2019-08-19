@@ -29,39 +29,50 @@ void freeList(List L){
 
 void pushList(List *L, int n){
 
-    if(*L == NULL){
+    if((*L) == NULL){
         (*L) = (List)malloc(sizeof(Node));
         (*L) -> data = n;
         (*L) -> next = NULL;
         return;
     }
 
-    List insertion = (List)malloc(sizeof(Node));
+    List *insertion;
+    insertion = (List*)malloc(sizeof(*insertion));
+    (*insertion) = (List)malloc(sizeof(Node));
 
     if((*L) -> next == NULL){
-        if((*L) -> data > n){
-            insertion -> data = (*L) -> data;
-            insertion -> next = NULL;
+        if(((*L) -> data) > n){
+            (*insertion) -> data = (*L) -> data;
+            (*insertion) -> next = NULL;
             (*L) -> data = n;
-            (*L) -> next = insertion;
+            (*L) -> next = (*insertion);
             return;
         }
         else{
-            insertion -> data = n;
-            insertion -> next = NULL;
-            (*L) -> next = insertion;
+            (*insertion) -> data = n;
+            (*insertion) -> next = NULL;
+            (*L) -> next = (*insertion);
             return;
         }
     }
 
     List aux = (*L);
+
+    if(((*L) -> data) > n){
+            (*insertion) -> data = (*L) -> data;
+            (*insertion) -> next = (*L) -> next;
+            (*L) -> data = n;
+            (*L) -> next = (*insertion);
+            return;
+    }
+
     while((aux -> next != NULL) && (aux -> next -> data < n)){
         aux = aux -> next;
     }
 
-    insertion -> data = n;
-    insertion -> next = aux -> next;
-    aux -> next = insertion;
+    (*insertion) -> data = n;
+    (*insertion) -> next = aux -> next;
+    aux -> next = (*insertion);
 }
 
 void printList(List L){
