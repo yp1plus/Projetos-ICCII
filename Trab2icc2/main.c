@@ -3,7 +3,7 @@
 int main(void){
 
 
-    char selector = 'Z';
+    char selector;
     
     int index;
 

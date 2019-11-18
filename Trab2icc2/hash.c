@@ -40,15 +40,11 @@ int stringSum(char *key)
 
 int hash_code(char **table, char *key)
 {
-    // conferindo se ja acertou um espaco vazio de primeira
     int guess = stringSum(key) % TAMANHO_DA_ENTRADA;
-    if(!strcmp(table[guess], ENTRADA_VAZIA) || !strcmp(table[guess], ENTRADA_REMOVIDA)){
-        return guess;
-    }
-    // caso nao acertou a primeira, realiza o procedimento de progressive overflow, olhando a proxima posicao
+    // realiza o procedimento de progressive overflow, olhando a proxima posicao
     while(1){
         guess = (guess+1)%TAMANHO_DA_ENTRADA;
-        if(!strcmp(table[guess], ENTRADA_VAZIA) || !strcmp(table[guess], ENTRADA_REMOVIDA)){
+        if(!strcmp(table[guess], ENTRADA_VAZIA) || !strcmp(table[guess], ENTRADA_REMOVIDA) || !strcmp(table[guess], key)){
             return guess;
         }
     }
