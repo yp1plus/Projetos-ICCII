@@ -4,7 +4,6 @@ int main(void){
 
 
     char selector = 'Z';
-    char aux = 'Z';
     
     int index;
 
@@ -21,8 +20,7 @@ int main(void){
     originalWord=word_alloc();
     translatedWord=word_alloc();
 
-    while(selector!='Q'){
-        scanf("%s :",input);
+    while(scanf("%s :",input) != EOF){
         selector=input[0];
 
         switch (selector)
@@ -67,8 +65,6 @@ int main(void){
             break;
         }
     }
-
-
 
     return 0;
 }

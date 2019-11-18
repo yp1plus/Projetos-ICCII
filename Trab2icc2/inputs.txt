@@ -1,0 +1,13 @@
+a : dog cachorro
+a : dog cao
+a : pig porco
+a : pig porquinho
+a : cat gato
+a : puppy cachorro
+a : chameleon camaleao
+a : lion leao
+f : porco
+r : porco
+f : porco
+f : gato
+f : cachorro
