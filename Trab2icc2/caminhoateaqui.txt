@@ -1,3 +1,0 @@
-cd ..
-cd ..
-cd /mnt/f/'Documentos gerais'/USP/Code/ICC2/Trabicc2

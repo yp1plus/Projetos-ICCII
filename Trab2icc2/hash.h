@@ -21,24 +21,20 @@ char** table_alloc(void);
 //Aloca uma palavra de 512 caracteres + \0
 char* word_alloc(void);
 
-// retorna o indice correto da tabela que a chave deve ser inserida (a funcao de hash)
+// Retorna o indice correto da tabela que a chave deve ser inserida (a funcao de hash)
 // parametros: a tabela e a chave
 int hash_code(char** table, char* key);
 
-// retora indice da chave na tabela se encontrar, ou posicao de hash invalida caso contrario (999999)
+// Retora indice da chave na tabela se encontrar, ou posicao de hash invalida caso contrario (999999)
 // parametros: a tabela e a chave
 int find_ht(char** table, char* key);
 
-//Insere uma dado par de palavras nas tabelas de hash baseado na palavra traduzida
+// Insere uma dado par de palavras nas tabelas de hash baseado na palavra traduzida
 // parametros: a tabela de palavras originais, a tabela de palavras traduzidas, a palavra original e a palavra traduzida.
 void hash_insert(char** originalTable, char** translatedTable, char* originalWord, char* translatedWord);
 
-//Remove um dado par de palavra das trabelas de hash baseado na palavra traduzida
+// Remove um dado par de palavra das trabelas de hash baseado na palavra traduzida
 // parametros: a tabela de paloavras originais, a tabela de palavras traduzidas, a palavra traduzida chave
 void hash_remove(char** originalTable,char** translatedTable,char* translatedWord);
-
-// VAO COLOCANDO FUNCOES AQUI E IMPLEMENTANDO NO .C
-// FUNCOES EM INGLES, COMENTARIOS EM PORTUGUES
-// EH PEDIDO QUE PELO MENOS COMENTAMOS O QUE A FUNCAO FAZ E OS PARAMETROS, COMO ILUSTRADO ACIMA
 
 #endif
