@@ -1,40 +1,60 @@
 #ifndef HASH_H
-#define HASH_H
+    #define HASH_H
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+    /*****************************************************************************//**
+    * Dicionario de Sinonimos com Tabela Hash
+    *
+    * É possivel inserir palavras com até 512 caracteres e suas respectivas traduções.
+    * As palavras podem ter digitos numericos e caracteres especiais, desde que os
+    * ultimos nao iniciem a palavra. A entrada máxima é de 10 mil palavras. 
+    * Ainda é possível remover palavras e buscar a tradução das palavras inseridas.
+    *
+    * Para inserir, use o operador a ou A seguido de : e, sequencialmente, separadas 
+    * por espaço, a palavra no idioma original e a palavra no idioma estrangeiro. 
+    * A entrada é do tipo a : dog ogday
+    *
+    * Para buscar, use o operador f ou F seguido de : e digite a palavra no idioma 
+    * estrangeiro. A entrada é do tipo f : ogday
+    *
+    * Para remover, use o operador r ou R seguido de : e digite a palavra no idioma
+    * estrangeiro. A entrada é do tipo r : ogday
+    ********************************************************************************/
 
-#define HASH_INVALIDO 999999
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
 
-#define ENTRADA_VAZIA "###"
+    #define INVALID_HASH 999999 /**< valor arbitrário maior do que dez mil que determina hash inválido */
 
-#define ENTRADA_REMOVIDA "#####"
+    #define EMPTY_INPUT "###" /**< simbolo diferente dos tipos de entradas para indicar string vazia */
 
-#define TAMANHO_DA_ENTRADA 10000
+    #define INPUT_REMOVED "#####" /**< simbolo diferente dos tipos de entradas para indicar string vazia apos remoção */
 
-#define TAMANHO_DA_PALAVRA 512
+    #define INPUT_SIZE 10000 /**< maximo numero de pares de palavras determinado */
 
-//Aloca uma tabela de 10000 linhas por 513 colunas (10000 palavras de 512 caracteres)
-char** table_alloc(void);
+    #define WORD_SIZE 512 /**< maximo numero de caracteres por palavra determinado */
 
-//Aloca uma palavra de 512 caracteres + \0
-char* word_alloc(void);
+    #define ZERO_BAR 1 /**< unidade que representa o caractere '\0' */
 
-// Retorna o indice correto da tabela que a chave deve ser inserida (a funcao de hash)
-// parametros: a tabela e a chave
-int hash_code(char** table, char* key);
+    /*! Aloca espaço na heap para uma tabela hash com, no máximo, 10 mil palavras e retorna */
+    char** table_alloc(void);
 
-// Retora indice da chave na tabela se encontrar, ou posicao de hash invalida caso contrario (999999)
-// parametros: a tabela e a chave
-int find_ht(char** table, char* key);
+    /*! Aloca espaço na heap para uma palavra de, no máximo, 512 caracteres e retorna */
+    char* word_alloc(void);
 
-// Insere uma dado par de palavras nas tabelas de hash baseado na palavra traduzida
-// parametros: a tabela de palavras originais, a tabela de palavras traduzidas, a palavra original e a palavra traduzida.
-void hash_insert(char** originalTable, char** translatedTable, char* originalWord, char* translatedWord);
+    /*! Retorna um inteiro, o codigo hash da string key na tabela hash, com overflow progressivo */
+    int hash_code(char** table, char* key);
 
-// Remove um dado par de palavra das trabelas de hash baseado na palavra traduzida
-// parametros: a tabela de paloavras originais, a tabela de palavras traduzidas, a palavra traduzida chave
-void hash_remove(char** originalTable,char** translatedTable,char* translatedWord);
+   /*! Retorna um inteiro, a posição da string key na tabela hash, ou um endereço inválido, caso ela não exista */
+    int find_ht(char** table, char* key);
 
+    //*! Insere a palavra original e a traduzida nas suas respectivas tabelas */
+    void hash_insert(char** originalTable, char** translatedTable, char* originalWord, char* translatedWord);
+
+    //!  Remove a palavra original e a traduzida das suas respectivas tabelas. 
+    /*!
+      Note que, diferente da inserção, na remoção só é necessária a palavra traduzida, 
+      uma vez que o dado já existe e o indice é o mesmo.
+    */
+    void hash_remove(char** originalTable, char** translatedTable, char* translatedWord);
 #endif
